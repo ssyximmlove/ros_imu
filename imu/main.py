@@ -18,7 +18,7 @@ class JY61PDriver(Node):
 		self.address = 0x50  # JY61P的I2C地址
 		self.imu_pub = self.create_publisher(Imu, 'imu/data', 10)
 		self.angles_pub = self.create_publisher(Vector3, 'imu/angles', 10)
-		self.timer = self.create_timer(0.1, self.timer_callback)  # 每0.1秒读取一次数据
+		self.timer = self.create_timer(0.02, self.timer_callback)  # 每0.02秒读取一次数据
 		self.declare_parameter('frame_id', 'imu_link')  # 声明参数，用于设置IMU数据的参考系
 		self.init_service = self.create_service(Trigger, 'imu/init', self.init_callback)  # 创建服务，用于初始化IMU
 		self.frame_id = self.get_parameter('frame_id').value
